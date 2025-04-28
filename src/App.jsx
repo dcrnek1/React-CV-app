@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import {BatteryWarning} from 'lucide-react'
 import './App.css'
+import EditCV from './components/views/EditCV'
+import PreviewCV from './components/views/PreviewCS'
 
 function App() {
 
   return (
     <>
-      <h1>Test</h1>
-      <p>Test</p>
-      <button className="btn btn-blue">Test</button>
-      <input type="text" placeholder='Test' className="btn btn-blue" />
-      <BatteryWarning />
+      <EditCV />
+      <PreviewCV />
     </>
   )
 }
