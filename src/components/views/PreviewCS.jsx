@@ -1,3 +1,3 @@
 export default function PreviewCV() {
-  return <div>PreviewCV</div>;
+  return <div className="w-full">PreviewCV</div>;
 }
