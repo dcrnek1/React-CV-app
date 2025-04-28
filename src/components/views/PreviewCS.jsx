@@ -1,3 +1,17 @@
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+
 export default function PreviewCV() {
-  return <div className="w-full">PreviewCV</div>;
+  const contentRef = useRef();
+  const handlePrint = useReactToPrint({
+    documentTitle: "CV",
+    contentRef: contentRef,
+  })
+
+  return <div className="w-full bg-slate-100 px-6 py-3 flex items-center flex-col">
+    {/* <button onClick={handlePrint}>Print this DIV</button> */}
+    <div ref={contentRef} className="w-[210mm] h-[297mm] bg-slate-300 rounded-md p-3">
+      This is where a CV will show
+    </div>
+  </div>;
 }

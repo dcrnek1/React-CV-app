@@ -5,9 +5,9 @@ import PreviewCV from "./components/views/PreviewCS";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen items-center">
+    <div className="flex flex-col min-h-screen w-fit items-center">
       <Header />
-      <div className="flex flex-row flex-1 gap-6 max-w-[1440px] w-full">
+      <div className="flex lg:flex-row flex-1 max-w-[1440px] w-full">
         <EditCV />
         <PreviewCV />
       </div>
