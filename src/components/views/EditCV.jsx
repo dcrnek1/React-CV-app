@@ -4,10 +4,10 @@ import Work from "../sections/Work"
 
 export default function EditCV() {
   return (
-  <>
+  <div>
   <General />
   <Education />
   <Work />
-  </>
+  </div>
   )
 }

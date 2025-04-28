@@ -1,3 +1,3 @@
 export default function PreviewCV() {
-  return <>PreviewCV</>;
+  return <div>PreviewCV</div>;
 }
