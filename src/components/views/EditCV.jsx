@@ -32,7 +32,7 @@ export default function EditCV() {
         return <button className={button.active ? activeButtonStyle : inactiveButtonStyle} onClick={() => handleButtonClick(button)}><IconName strokeWidth={1}/></button>
       })}
       </div>
-      <div className="px-6 py-3 bg-slate-700 min-w-md">
+      <div className="px-6 py-3 bg-slate-700 w-full sm:min-w-md">
         <ActiveComponent />
       </div>
     </div>
