@@ -17,7 +17,7 @@ export default function PreviewCV() {
 
   const leftHeadingStyle = "text-lg font-semibold uppercase tracking-widest border-b mb-2";
   const leftItemNormal = "text-sm text-neutral-200";
-  const rightHeadingStyle = "font-semibold uppercase w-fit text-lg border-b border-slate-400 text-slate-700 mt-6 w-full";
+  const rightHeadingStyle = "font-semibold uppercase w-fit text-xl border-b border-slate-400 text-blue-800/80 mt-6 w-full";
   const rightNormalStyle = "text-sm text-justify text-slate-600 leading-4 mt-3";
 
   return <div className="lg:w-full -mt-56 -mb-58 lg:mt-0 lg:mb-0 lg:bg-slate-400/20 px-6 py-3 flex items-center flex-col scale-60 transform-gpu lg:scale-none lg:transform-none">
@@ -60,9 +60,9 @@ export default function PreviewCV() {
         <div className={rightHeadingStyle}>Experience</div>
         <div className='flex flex-col'>
           {/* First experience */}
-          <div>
-            <div className='text-md font-semibold text-blue-800/80 leading-4 mt-3'>Marker.hr</div>
-            <div className='flex flex-row gap-6 text-xs text-slate-600'>
+          <div className='text-slate-600 pb-5'>
+            <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>Marker.hr</div>
+            <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
               <div className='flex flex-row items-center gap-1'>
                 <Calendar size={11}/>
                 <div>09/2016 - 08/2019</div>
@@ -72,9 +72,84 @@ export default function PreviewCV() {
                 <div>Varaždin, HR</div>
               </div>
             </div>
+            <div className='pl-4 text-base'>PHP Backend Developer</div>
+            <div className='pl-4 leading-4 text-sm'>
+              <ul className='list-disc list-outside pl-6 text-slate-500'>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Consectetur adipisicing elit</li>
+                <li>Recusandae explicabo est rerumasda asd asd asda dsasda sda</li>
+                <li>Nesciunt dolor consequuntur eaque repudiandae</li>
+              </ul>
+            </div>
+          </div>
+          <div className='border-b border-dashed border-slate-400 w-1/2'></div>
+          {/* Second experience */}
+          <div className='text-slate-600'>
+            <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>Financijska agencija</div>
+            <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
+              <div className='flex flex-row items-center gap-1'>
+                <Calendar size={11}/>
+                <div>09/2016 - 08/2019</div>
+              </div>
+              <div className='flex flex-row items-center gap-1'>
+                <MapPin size={11}/>
+                <div>Varaždin, HR</div>
+              </div>
+            </div>
+            <div className='pl-4 text-base'>PHP Backend Developer</div>
+            <div className='pl-4 leading-4 text-sm'>
+              <ul className='list-disc list-outside pl-6 text-slate-500'>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Consectetur adipisicing elit</li>
+                <li>Recusandae explicabo est rerumasda asd asd asda dsasda sda</li>
+                <li>Nesciunt dolor consequuntur eaque repudiandae</li>
+              </ul>
+            </div>
           </div>
         </div>
-        
+        {/* Education */}
+        <div className={rightHeadingStyle}>Education</div>
+        {/* First education */}
+        <div className='text-slate-600'>
+            <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>Srednja škola Stjepana Radića</div>
+            <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
+              <div className='flex flex-row items-center gap-1'>
+                <Calendar size={11}/>
+                <div>09/2016 - 08/2019</div>
+              </div>
+              <div className='flex flex-row items-center gap-1'>
+                <MapPin size={11}/>
+                <div>Bedekovčina, HR</div>
+              </div>
+            </div>
+            <div className='pl-4 text-base'>Građevinski tehničar</div>
+            <div className='pl-4 leading-4 text-sm'>
+              <ul className='list-disc list-outside pl-6 text-slate-500'>
+                <li>Lorem ipsum dolor sit amet</li>
+              </ul>
+            </div>
+          </div>
+          <div className='border-b border-dashed border-slate-400 w-1/2 mt-4'></div>
+          {/* Second education */}
+          <div className='text-slate-600'>
+            <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>Fakultet organizacije i informatike</div>
+            <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
+              <div className='flex flex-row items-center gap-1'>
+                <Calendar size={11}/>
+                <div>09/2016 - 08/2019</div>
+              </div>
+              <div className='flex flex-row items-center gap-1'>
+                <MapPin size={11}/>
+                <div>Varaždin, HR</div>
+              </div>
+            </div>
+            <div className='pl-4 text-base'>Informacijski sustavi</div>
+            <div className='pl-4 leading-4 text-sm'>
+              <ul className='list-disc list-outside pl-6 text-slate-500'>
+                <li>Lorem ipsum dolor sit amet</li>
+              </ul>
+            </div>
+          </div>
       </div>
     </div>
   </div>;
