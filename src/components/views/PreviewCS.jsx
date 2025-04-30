@@ -1,4 +1,4 @@
-import { Globe, Mail, MapPin, PhoneIncoming } from 'lucide-react';
+import { Globe, Mail, MapPin, PhoneIncoming, Calendar } from 'lucide-react';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
@@ -15,8 +15,10 @@ export default function PreviewCV() {
     contentRef.current.className = contentRef.current.className.replace("w-[210mm] h-[297mm]", "w-[186.9mm] h-[264.33mm] rounded-md");
   }
 
-  const leftHeadingStyle = "text-xl font-semibold uppercase tracking-widest border-b mb-2";
+  const leftHeadingStyle = "text-lg font-semibold uppercase tracking-widest border-b mb-2";
   const leftItemNormal = "text-sm text-neutral-200";
+  const rightHeadingStyle = "font-semibold uppercase w-fit text-lg border-b border-slate-400 text-slate-700 mt-6 w-full";
+  const rightNormalStyle = "text-sm text-justify text-slate-600 leading-4 mt-3";
 
   return <div className="lg:w-full -mt-56 -mb-58 lg:mt-0 lg:mb-0 lg:bg-slate-400/20 px-6 py-3 flex items-center flex-col scale-60 transform-gpu lg:scale-none lg:transform-none">
     <button onClick={printHandler}>Print</button>
@@ -49,7 +51,31 @@ export default function PreviewCV() {
           <div className={leftItemNormal}><li>Italian - Basics</li></div>
         </div>
       </div>
-      <div className='bg-slate-100 h-full flex-[3.5] p-3'></div>
+      <div className='bg-slate-100 h-full flex-[3.5] p-3 flex flex-col'>
+        <div className='font-semibold uppercase text-blue-900/80 tracking-widest text-3xl text-center pb-2 pt-6'>Dario Crnek</div>
+        {/* Summary */}
+        <div className={rightHeadingStyle}>Summary</div>
+        <div className={rightNormalStyle}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, laudantium modi? Cupiditate vero facilis tempore. Earum, architecto, facere repellat fugit reiciendis tempore distinctio non reprehenderit sed cum fuga impedit unde!</div>
+        {/* Experience */}
+        <div className={rightHeadingStyle}>Experience</div>
+        <div className='flex flex-col'>
+          {/* First experience */}
+          <div>
+            <div className='text-md font-semibold text-blue-800/80 leading-4 mt-3'>Marker.hr</div>
+            <div className='flex flex-row gap-6 text-xs text-slate-600'>
+              <div className='flex flex-row items-center gap-1'>
+                <Calendar size={11}/>
+                <div>09/2016 - 08/2019</div>
+              </div>
+              <div className='flex flex-row items-center gap-1'>
+                <MapPin size={11}/>
+                <div>Varaždin, HR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
   </div>;
 }
