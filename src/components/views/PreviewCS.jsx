@@ -52,7 +52,7 @@ export default function PreviewCV({data}) {
         </div>
       </div>
       <div className='bg-slate-100 h-full flex-[3.5] px-6 py-3 flex flex-col'>
-        {(data.nameSummary.firstName || data.nameSummary.lastName) && <div className='font-semibold uppercase text-blue-900/80 tracking-widest text-3xl text-center pb-2 pt-6'>{data.nameSummary.firstName && data.nameSummary.firstName} {data.nameSummary.lastName && data.nameSummary.lastName}</div>}
+        {(data.nameSummary.firstName || data.nameSummary.lastName) && <div className='font-semibold uppercase text-blue-900/80 tracking-widest text-3xl text-left pb-2 pt-6'>{data.nameSummary.firstName && data.nameSummary.firstName} {data.nameSummary.lastName && data.nameSummary.lastName}</div>}
         {/* Summary */}
         {data.nameSummary.summary && <><div className={rightHeadingStyle}>Summary</div>
         <div className={rightNormalStyle}>{data.nameSummary.summary}</div>
