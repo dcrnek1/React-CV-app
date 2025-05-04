@@ -1,27 +1,27 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "./components/sections/Header";
+import Header from "./components/views/Header";
 import EditCV from "./components/views/EditCV";
 import PreviewCV from "./components/views/PreviewCS";
 
 function App() {
-  const defaultContactData = {
-    phone: '+385 98 562 934',
-    email: 'dario.crnek@gmail.com',
-    address: 'Zagorska 22, 10 000 Zagreb',
-    website: 'www.dariocrnek.com',
+  const defaultData = {
+    contact: {
+      phone: '+385 98 562 934',
+      email: 'dario.crnek@gmail.com',
+      address: 'Zagorska 22, 10 000 Zagreb',
+      website: 'www.dariocrnek.com',
+    },
+    nameSummary: {
+      firstName: 'Dario',
+      lastName: 'Crnek',
+      summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium, odio nec porttitor rutrum, augue quam aliquet lorem, quis tempor leo diam quis ex. Nullam lobortis efficitur bibendum. Nullam laoreet at ipsum sit amet auctor. Curabitur a tortor ex.',
+    },
   };
-  const [contactData, setContactData] = useState(defaultContactData);
-
-  const defaultNameSummary = {
-    name: 'Dario Crnek',
-    summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, laudantium modi? Cupiditate vero facilis tempore. Earum, architecto, facere repellat fugit reiciendis tempore distinctio non reprehenderit sed cum fuga impedit unde!',
-  }
-  const [nameSummary, setNameSummary] = useState(defaultNameSummary);
+  const [data, setData] = useState(defaultData);
 
   const resetData = () => {
-    setContactData(clearObject(defaultContactData));
-    setNameSummary(clearObject(defaultNameSummary));
+    setData(clearObject(defaultData));
   };
 
   function clearObject (obj) {
@@ -31,16 +31,15 @@ function App() {
   }
 
   const resetDefault = () => {
-    setContactData(defaultContactData);
-    setNameSummary(defaultNameSummary);
+    setData(defaultData);
   }
 
   return (
     <div className="flex flex-col min-h-screen items-center">
       <Header />
       <div className="flex flex-col lg:flex-row flex-1 w-full items-stretch">
-        <EditCV resetData={resetData} resetDefault={resetDefault}/>
-        <PreviewCV data={{contactData, setContactData, nameSummary}} />
+        <EditCV resetData={resetData} resetDefault={resetDefault} data={data} setData={setData}/>
+        <PreviewCV data={data} />
       </div>
     </div>
   );

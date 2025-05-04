@@ -2,7 +2,7 @@ import { Globe, Mail, MapPin, PhoneIncoming, Calendar } from 'lucide-react';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
-export default function PreviewCV({data: {contactData, nameSummary}}) {
+export default function PreviewCV({data}) {
   const contentRef = useRef();
   const handlePrint = useReactToPrint({
     documentTitle: "CV",
@@ -30,13 +30,13 @@ export default function PreviewCV({data: {contactData, nameSummary}}) {
         </div>
         {/* Contact */}
         <div className='w-full flex flex-col gap-1'>
-        {Object.values(contactData).some(val => val != '') && <div className={leftHeadingStyle}>Contact</div>}
-          {contactData.phone && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><PhoneIncoming size={15}/><div>{contactData.phone}</div></div>}
-          {contactData.email && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Mail size={15}/><div>{contactData.email}</div></div>}
-          {contactData.address && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><MapPin size={15}/><div>{contactData.address}</div></div>}
-          {contactData.website && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Globe size={15}/><div><a href='https://google.com' target='_blank'>{contactData.website}</a></div></div>}
+        {Object.values(data.contact).some(val => val != '') && <div className={leftHeadingStyle + " mt-6"}>Contact</div>}
+          {data.contact.phone && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><PhoneIncoming size={15}/><div>{data.contact.phone}</div></div>}
+          {data.contact.email && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Mail size={15}/><div>{data.contact.email}</div></div>}
+          {data.contact.address && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><MapPin size={15}/><div>{data.contact.address}</div></div>}
+          {data.contact.website && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Globe size={15}/><div><a href='https://google.com' target='_blank'>{data.contact.website}</a></div></div>}
           {/* Skills */}
-          <div className={leftHeadingStyle + " mt-10"}>Skills</div>
+          <div className={leftHeadingStyle + " mt-6"}>Skills</div>
           <div className={leftItemNormal}><li>Project Management</li></div>
           <div className={leftItemNormal}><li>Public Relations</li></div>
           <div className={leftItemNormal}><li>Teamwork</li></div>
@@ -44,7 +44,7 @@ export default function PreviewCV({data: {contactData, nameSummary}}) {
           <div className={leftItemNormal}><li>Critical Thinking</li></div>
           <div className={leftItemNormal}><li>Leadership</li></div>
           {/* Languages */}
-          <div className={leftHeadingStyle + " mt-10"}>Languages</div>
+          <div className={leftHeadingStyle + " mt-6"}>Languages</div>
           <div className={leftItemNormal}><li>English - Fluent</li></div>
           <div className={leftItemNormal}><li>French - Fluent</li></div>
           <div className={leftItemNormal}><li>Croatian - Fluent</li></div>
@@ -52,10 +52,10 @@ export default function PreviewCV({data: {contactData, nameSummary}}) {
         </div>
       </div>
       <div className='bg-slate-100 h-full flex-[3.5] px-6 py-3 flex flex-col'>
-        {nameSummary.name && <div className='font-semibold uppercase text-blue-900/80 tracking-widest text-3xl text-center pb-2 pt-6'>{nameSummary.name}</div>}
+        {(data.nameSummary.firstName || data.nameSummary.lastName) && <div className='font-semibold uppercase text-blue-900/80 tracking-widest text-3xl text-center pb-2 pt-6'>{data.nameSummary.firstName && data.nameSummary.firstName} {data.nameSummary.lastName && data.nameSummary.lastName}</div>}
         {/* Summary */}
-        {nameSummary.summary && <><div className={rightHeadingStyle}>Summary</div>
-        <div className={rightNormalStyle}>{nameSummary.summary}</div>
+        {data.nameSummary.summary && <><div className={rightHeadingStyle}>Summary</div>
+        <div className={rightNormalStyle}>{data.nameSummary.summary}</div>
         </>}
         {/* Experience */}
         <div className={rightHeadingStyle}>Experience</div>

@@ -9,7 +9,7 @@ export default function ClearButton({ resetData, resetDefault }) {
           className="flex items-center gap-1 rounded-md px-3 py-2 text-xs font-medium text-gray-300 hover:bg-gray-800 bg-gray-600 hover:text-whit"
         >
           <RotateCcw size={12} strokeWidth={3} />
-          <div>Clear</div>
+          <div>Clear all</div>
         </button>
 
         <button
