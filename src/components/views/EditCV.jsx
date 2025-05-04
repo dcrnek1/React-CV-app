@@ -7,7 +7,7 @@ import Skills from "../sections/Skills";
 import { UserPen, Library, Briefcase, Settings2, Languages, Lightbulb } from "lucide-react";
 import { useState } from "react";
 
-export default function EditCV() {
+export default function EditCV({resetData, resetDefault}) {
   const inactiveButtonStyle = "p-4 hover:bg-slate-800 transition-colors";
   const activeButtonStyle = "bg-slate-700 p-4 transition-colors";
   const [buttons, setButtons] = useState([
@@ -37,7 +37,7 @@ export default function EditCV() {
       })}
       </div>
       <div className="px-6 py-3 bg-slate-700 w-full sm:min-w-md">
-        <ActiveComponent />
+        <ActiveComponent resetData={resetData} resetDefault={resetDefault}/>
       </div>
     </div>
   );

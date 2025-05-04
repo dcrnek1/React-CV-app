@@ -2,7 +2,7 @@ import { Globe, Mail, MapPin, PhoneIncoming, Calendar } from 'lucide-react';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
-export default function PreviewCV() {
+export default function PreviewCV({data: {contactData, nameSummary}}) {
   const contentRef = useRef();
   const handlePrint = useReactToPrint({
     documentTitle: "CV",
@@ -23,18 +23,18 @@ export default function PreviewCV() {
   return <div className="lg:w-full -mt-56 -mb-58 lg:mt-0 lg:mb-0 lg:bg-slate-400/20 px-6 py-3 flex items-center flex-col scale-60 transform-gpu lg:scale-none lg:transform-none">
     <button onClick={printHandler}>Print</button>
     <div ref={contentRef} className="w-[186.9mm] h-[264.33mm] rounded-md bg-slate-300 flex overflow-hidden flex-row border border-slate-300">
-      <div className='bg-blue-900/80 h-full flex-2 contain flex flex-col gap-3 px-4 pt-6 text-neutral-100'>
+      <div className='bg-blue-900/80 h-full flex-2 contain flex flex-col gap-3 px-6 pt-6 text-neutral-100'>
       {/* Profile pic */}
         <div className='self-center bg-neutral-200 size-47 rounded-full p3 flex items-center justify-center mb-5'>
           <div className='bg-neutral-300 size-45 rounded-full bg-[url(/src/assets/profile.jpg)] bg-cover bg-center'></div>
         </div>
         {/* Contact */}
         <div className='w-full flex flex-col gap-1'>
-          <div className={leftHeadingStyle}>Contact</div>
-          <div className={leftItemNormal + " flex flex-row items-center gap-2"}><PhoneIncoming size={15}/><div>+385 98 562 934</div></div>
-          <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Mail size={15}/><div>dario.crnek@gmail.com</div></div>
-          <div className={leftItemNormal + " flex flex-row items-center gap-2"}><MapPin size={15}/><div>Zagorska 22, 10 000 Zagreb</div></div>
-          <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Globe size={15}/><div><a href='https://google.com' target='_blank'>www.dariocrnek.com</a></div></div>
+        {Object.values(contactData).some(val => val != '') && <div className={leftHeadingStyle}>Contact</div>}
+          {contactData.phone && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><PhoneIncoming size={15}/><div>{contactData.phone}</div></div>}
+          {contactData.email && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Mail size={15}/><div>{contactData.email}</div></div>}
+          {contactData.address && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><MapPin size={15}/><div>{contactData.address}</div></div>}
+          {contactData.website && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Globe size={15}/><div><a href='https://google.com' target='_blank'>{contactData.website}</a></div></div>}
           {/* Skills */}
           <div className={leftHeadingStyle + " mt-10"}>Skills</div>
           <div className={leftItemNormal}><li>Project Management</li></div>
@@ -51,11 +51,12 @@ export default function PreviewCV() {
           <div className={leftItemNormal}><li>Italian - Basics</li></div>
         </div>
       </div>
-      <div className='bg-slate-100 h-full flex-[3.5] p-3 flex flex-col'>
-        <div className='font-semibold uppercase text-blue-900/80 tracking-widest text-3xl text-center pb-2 pt-6'>Dario Crnek</div>
+      <div className='bg-slate-100 h-full flex-[3.5] px-6 py-3 flex flex-col'>
+        {nameSummary.name && <div className='font-semibold uppercase text-blue-900/80 tracking-widest text-3xl text-center pb-2 pt-6'>{nameSummary.name}</div>}
         {/* Summary */}
-        <div className={rightHeadingStyle}>Summary</div>
-        <div className={rightNormalStyle}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, laudantium modi? Cupiditate vero facilis tempore. Earum, architecto, facere repellat fugit reiciendis tempore distinctio non reprehenderit sed cum fuga impedit unde!</div>
+        {nameSummary.summary && <><div className={rightHeadingStyle}>Summary</div>
+        <div className={rightNormalStyle}>{nameSummary.summary}</div>
+        </>}
         {/* Experience */}
         <div className={rightHeadingStyle}>Experience</div>
         <div className='flex flex-col'>
