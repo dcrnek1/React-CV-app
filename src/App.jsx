@@ -57,8 +57,6 @@ function App() {
         notes: [
           'Lorem ipsum dolor sit amet',
           'Consectetur adipisicing elit',
-          'Recusandae explicabo est rerumasda asd asd asda dsasda sda',
-          'Nesciunt dolor consequuntur eaque repudiandae',
         ],
       },
       {
@@ -70,8 +68,6 @@ function App() {
         notes: [
           'Lorem ipsum dolor sit amet',
           'Consectetur adipisicing elit',
-          'Recusandae explicabo est rerumasda asd asd asda dsasda sda',
-          'Nesciunt dolor consequuntur eaque repudiandae',
         ],
       }
     ],

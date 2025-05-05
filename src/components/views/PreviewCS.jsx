@@ -1,5 +1,5 @@
 import { Globe, Mail, MapPin, PhoneIncoming, Calendar } from 'lucide-react';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
 export default function PreviewCV({data}) {
@@ -36,19 +36,11 @@ export default function PreviewCV({data}) {
           {data.contact.address && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><MapPin size={15}/><div>{data.contact.address}</div></div>}
           {data.contact.website && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Globe size={15}/><div><a href='https://google.com' target='_blank'>{data.contact.website}</a></div></div>}
           {/* Skills */}
-          <div className={leftHeadingStyle + " mt-6"}>Skills</div>
-          <div className={leftItemNormal}><li>Project Management</li></div>
-          <div className={leftItemNormal}><li>Public Relations</li></div>
-          <div className={leftItemNormal}><li>Teamwork</li></div>
-          <div className={leftItemNormal}><li>Effective Communication</li></div>
-          <div className={leftItemNormal}><li>Critical Thinking</li></div>
-          <div className={leftItemNormal}><li>Leadership</li></div>
+          {data.skills.length > 0 && <div className={leftHeadingStyle + " mt-6"}>Skills</div>}
+          {data.skills.length > 0 && data.skills.map((skill, index) => <div key={"skill-" + index} className={leftItemNormal}><li>{skill}</li></div>)}
           {/* Languages */}
-          <div className={leftHeadingStyle + " mt-6"}>Languages</div>
-          <div className={leftItemNormal}><li>English - Fluent</li></div>
-          <div className={leftItemNormal}><li>French - Fluent</li></div>
-          <div className={leftItemNormal}><li>Croatian - Fluent</li></div>
-          <div className={leftItemNormal}><li>Italian - Basics</li></div>
+          {data.languages.length > 0 && <div className={leftHeadingStyle + " mt-6"}>Languages</div>}
+          {data.languages.length > 0 && data.languages.map((language, index) => <div key={"language-" + index} className={leftItemNormal}><li>{language}</li></div>)}
         </div>
       </div>
       <div className='bg-slate-100 h-full flex-[3.5] px-6 py-3 flex flex-col'>
@@ -58,99 +50,65 @@ export default function PreviewCV({data}) {
         <div className={rightNormalStyle}>{data.nameSummary.summary}</div>
         </>}
         {/* Experience */}
-        <div className={rightHeadingStyle}>Experience</div>
+        {data.experience.length >0 && <div className={rightHeadingStyle}>Experience</div>}
         <div className='flex flex-col'>
           {/* First experience */}
-          <div className='text-slate-600 pb-5'>
-            <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>Marker.hr</div>
-            <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
-              <div className='flex flex-row items-center gap-1'>
-                <Calendar size={11}/>
-                <div>09/2016 - 08/2019</div>
+          {data.experience.length > 0 && data.experience.map((experience, index) => {
+            return (<React.Fragment key={"experience-" + index}>
+              <div className='text-slate-600 pb-5'>
+              <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>{experience.employer}</div>
+              <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
+                <div className='flex flex-row items-center gap-1'>
+                  <Calendar size={11}/>
+                  <div>{experience.dateFrom} - {experience.dateTo}</div>
+                </div>
+                <div className='flex flex-row items-center gap-1'>
+                  <MapPin size={11}/>
+                  <div>{experience.location}</div>
+                </div>
               </div>
-              <div className='flex flex-row items-center gap-1'>
-                <MapPin size={11}/>
-                <div>Varaždin, HR</div>
-              </div>
-            </div>
-            <div className='pl-4 text-base'>PHP Backend Developer</div>
-            <div className='pl-4 leading-4 text-sm'>
-              <ul className='list-disc list-outside pl-6 text-slate-500'>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Consectetur adipisicing elit</li>
-                <li>Recusandae explicabo est rerumasda asd asd asda dsasda sda</li>
-                <li>Nesciunt dolor consequuntur eaque repudiandae</li>
-              </ul>
-            </div>
-          </div>
-          <div className='border-b border-dashed border-slate-400 w-1/2'></div>
-          {/* Second experience */}
-          <div className='text-slate-600'>
-            <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>Financijska agencija</div>
-            <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
-              <div className='flex flex-row items-center gap-1'>
-                <Calendar size={11}/>
-                <div>09/2016 - 08/2019</div>
-              </div>
-              <div className='flex flex-row items-center gap-1'>
-                <MapPin size={11}/>
-                <div>Varaždin, HR</div>
+              <div className='pl-4 text-base'>{experience.position}</div>
+              <div className='pl-4 leading-4 text-sm'>
+                <ul className='list-disc list-outside pl-6 text-slate-500'>
+                  {experience.work.length > 0 && experience.work.map((bullet, index) => {
+                    return <li key={"workBullet" + index}>{bullet}</li>
+                  })}
+                </ul>
               </div>
             </div>
-            <div className='pl-4 text-base'>PHP Backend Developer</div>
-            <div className='pl-4 leading-4 text-sm'>
-              <ul className='list-disc list-outside pl-6 text-slate-500'>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Consectetur adipisicing elit</li>
-                <li>Recusandae explicabo est rerumasda asd asd asda dsasda sda</li>
-                <li>Nesciunt dolor consequuntur eaque repudiandae</li>
-              </ul>
-            </div>
-          </div>
+            {index != data.experience.length -1 && <div className='border-b border-dashed border-slate-400 w-1/2'></div>}
+            </React.Fragment>
+            )})}
+          
         </div>
         {/* Education */}
-        <div className={rightHeadingStyle}>Education</div>
+        {data.education.length > 0 && <div className={rightHeadingStyle}>Education</div>}
         {/* First education */}
-        <div className='text-slate-600'>
-            <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>Srednja škola Stjepana Radića</div>
-            <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
-              <div className='flex flex-row items-center gap-1'>
-                <Calendar size={11}/>
-                <div>09/2016 - 08/2019</div>
+        {data.education.length > 0 && data.education.map((education, index) => {
+          return (
+          <React.Fragment key={"education-" + index}>
+              <div className='text-slate-600'>
+              <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>{education.school}</div>
+              <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
+                <div className='flex flex-row items-center gap-1'>
+                  <Calendar size={11}/>
+                  <div>{education.dateFrom} - {education.dateTo}</div>
+                </div>
+                <div className='flex flex-row items-center gap-1'>
+                  <MapPin size={11}/>
+                  <div>{education.location}</div>
+                </div>
               </div>
-              <div className='flex flex-row items-center gap-1'>
-                <MapPin size={11}/>
-                <div>Bedekovčina, HR</div>
-              </div>
-            </div>
-            <div className='pl-4 text-base'>Građevinski tehničar</div>
-            <div className='pl-4 leading-4 text-sm'>
-              <ul className='list-disc list-outside pl-6 text-slate-500'>
-                <li>Lorem ipsum dolor sit amet</li>
-              </ul>
-            </div>
-          </div>
-          <div className='border-b border-dashed border-slate-400 w-1/2 mt-4'></div>
-          {/* Second education */}
-          <div className='text-slate-600'>
-            <div className='text-lg font-semibold text-slate-700 leading-4 mt-3'>Fakultet organizacije i informatike</div>
-            <div className='flex flex-row gap-6 text-xs leading-6 text-slate-600'>
-              <div className='flex flex-row items-center gap-1'>
-                <Calendar size={11}/>
-                <div>09/2016 - 08/2019</div>
-              </div>
-              <div className='flex flex-row items-center gap-1'>
-                <MapPin size={11}/>
-                <div>Varaždin, HR</div>
+              <div className='pl-4 text-base'>{education.field}</div>
+              <div className='pl-4 leading-4 text-sm'>
+                <ul className='list-disc list-outside pl-6 text-slate-500'>
+                  {education.notes.length > 0 && education.notes.map((note, index) => <li key={"note-" + index}>{note}</li>)}
+                </ul>
               </div>
             </div>
-            <div className='pl-4 text-base'>Informacijski sustavi</div>
-            <div className='pl-4 leading-4 text-sm'>
-              <ul className='list-disc list-outside pl-6 text-slate-500'>
-                <li>Lorem ipsum dolor sit amet</li>
-              </ul>
-            </div>
-          </div>
+            {index != data.education.length -1 && <div className='border-b border-dashed border-slate-400 w-1/2 mt-4'></div>}
+          </React.Fragment>
+          )})}
       </div>
     </div>
   </div>;

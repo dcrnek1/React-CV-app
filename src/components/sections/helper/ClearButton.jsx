@@ -34,7 +34,6 @@ export default function ClearButton({ resetData, resetDefault }) {
 }
 
 function ModalConfirm({isVisibleModal, closeModal, content, action, subject}) {
-  console.log(isVisibleModal ? 'block' : 'hidden')
   return (
     <div className={isVisibleModal ? 'block' + ' fixed inset-0 z-50 flex items-center justify-center bg-black/70' : 'hidden'}>
         <section className="bg-slate-700 p-4 rounded-lg flex flex-col gap-6 text-slate-200">
@@ -44,10 +43,10 @@ function ModalConfirm({isVisibleModal, closeModal, content, action, subject}) {
             <div>Are you sure you want to proceed?</div>
           </div>
           <div className="flex flex-row gap-1 justify-end">
-            <button className="rounded-md px-3 py-2 text-sm font-bold text-gray-300 hover:bg-orange-800 bg-orange-700 hover:text-white" onClick={() => closeModal()}>
+            <button className="rounded-md px-3 py-2 text-sm font-bold text-gray-300 hover:bg-orange-600 bg-orange-700 hover:text-white" onClick={() => closeModal()}>
               No
             </button>
-            <button className="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-sky-700 bg-sky-600 hover:text-white" onClick={() => {action(); closeModal()}}>
+            <button className="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-sky-500 bg-sky-600 hover:text-white" onClick={() => {action(); closeModal()}}>
               Yes
             </button>
           </div>
