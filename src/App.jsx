@@ -7,21 +7,21 @@ import PreviewCV from "./components/views/PreviewCS";
 function App() {
   const defaultData = {
     contact: {
-      phone: '+385 98 562 934',
-      email: 'dario.crnek@gmail.com',
-      address: 'Zagorska 22, 10 000 Zagreb',
-      website: 'www.dariocrnek.com',
+      phone: '+385 98 564 964',
+      email: 'dario@gmail.com',
+      address: 'Zagreb 10, 10 000 Zagreb',
+      website: 'www.namesurname.com',
     },
     nameSummary: {
-      firstName: 'Dario',
-      lastName: 'Crnek',
+      firstName: 'Name',
+      lastName: 'Surname',
       summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium, odio nec porttitor rutrum, augue quam aliquet lorem, quis tempor leo diam quis ex. Nullam lobortis efficitur bibendum. Nullam laoreet at ipsum sit amet auctor. Curabitur a tortor ex.',
     },
     skills: ['Project Management', 'Public Relations', 'Teamwork', 'Effective Communication', 'Critical Thinking', 'Leadership'],
     languages: ['English - Fluent', 'French - Fluent', 'Croatian - Fluent', 'Italian - Basics'],
     experience: [
       { 
-        employer: 'Marker.hr',
+        employer: 'Company.hr',
         dateFrom: '09/2016',
         dateTo: '08/2019',
         location: 'Varaždin, HR',
@@ -34,11 +34,11 @@ function App() {
         ],
       },
       {
-        employer: 'Financijska agencija',
-        dateFrom: '09/2016',
-        dateTo: '08/2019',
+        employer: 'Company 2',
+        dateFrom: '09/2019',
+        dateTo: '08/2024',
         location: 'Zagreb, HR',
-        position: 'PHP Backend Developer',
+        position: 'React Developer',
         work: [
           'Lorem ipsum dolor sit amet',
           'Consectetur adipisicing elit',
@@ -49,7 +49,7 @@ function App() {
     ],
     education: [
       { 
-        school: 'Srednja škola Stjepana Radića',
+        school: 'Srednja škola',
         dateFrom: '09/2016',
         dateTo: '08/2019',
         location: 'Bedekovčina, HR',

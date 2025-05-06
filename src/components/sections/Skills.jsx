@@ -7,13 +7,14 @@ export default function Skills({ resetData, resetDefault, data, setData }) {
   const inputRef = useRef(null);
 
   function addSkill() {
-    
-    setData(prev => ({
-      ...prev,
-      skills: [...prev.skills, inputValue]
-    }));
-    setInputValue(""); 
-    inputRef.current?.focus();
+    if (data.skills.length < 6 && inputValue != "") {
+      setData(prev => ({
+        ...prev,
+        skills: [...prev.skills, inputValue]
+      }));
+      setInputValue(""); 
+      inputRef.current?.focus();
+    }
   }
 
   return (
@@ -34,7 +35,7 @@ export default function Skills({ resetData, resetDefault, data, setData }) {
         <div className="flex flex-row justify-between items-end gap-2">
             <div className="flex-1">
               <label htmlFor="first_name" ref={inputRef} className="block mb-2 text-sm font-medium text-slate-300">New skill</label>
-              <input  value={inputValue || ''} onChange={(e) => setInputValue(e.target.value)} type="text" id="first_name" className="border text-sm rounded-lg block max-w-100 w-full p-2.5 bg-slate-600 border-gray-600 placeholder-slate-400 text-white focus:ring-blue-500" placeholder="" 
+              <input disabled={data.skills.length >= 6 ? true : false} value={inputValue || ''} placeholder={data.skills.length >= 6 ? "Maximum of 6 skills saved" : ""} onChange={(e) => setInputValue(e.target.value)} type="text" id="first_name" className="border text-sm rounded-lg block max-w-100 w-full p-2.5 bg-slate-600 border-gray-600 placeholder-slate-400 text-white focus:ring-blue-500" 
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   e.preventDefault(); // prevent form submit or newline
@@ -44,7 +45,7 @@ export default function Skills({ resetData, resetDefault, data, setData }) {
             </div>
             <div className=" justify-self-end">
               <button className="rounded-md p-2.5 px-5 text-sm font-bold text-gray-300 hover:bg-sky-500 bg-sky-600 hover:text-white flex justify-between gap-2 items-center font-bold text-lg" 
-              onClick={() => addSkill()}>
+              onClick={() => addSkill()} >
                 <Plus size={17} strokeWidth={3} />
                 <div>Add</div>
               </button>
