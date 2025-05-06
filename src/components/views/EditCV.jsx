@@ -36,7 +36,7 @@ export default function EditCV({resetData, resetDefault, data, setData}) {
         return <button key={button.name} className={button.active ? activeButtonStyle : inactiveButtonStyle} onClick={() => handleButtonClick(button)}><IconName strokeWidth={1}/></button>
       })}
       </div>
-      <div className="px-6 py-3 bg-slate-700 lg:w-xl w-full sm:min-w-md">
+      <div className="px-6 py-3 bg-slate-700 lg:w-xl flex-1">
         <ActiveComponent resetData={resetData} resetDefault={resetDefault} data={data} setData={setData}/>
       </div>
     </div>

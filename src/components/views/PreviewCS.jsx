@@ -20,7 +20,7 @@ export default function PreviewCV({data}) {
   const rightHeadingStyle = "font-semibold uppercase w-fit text-xl border-b border-slate-400 text-blue-800/80 mt-6 w-full";
   const rightNormalStyle = "text-sm text-justify text-slate-600 leading-4 mt-3";
 
-  return <div className="lg:w-full -mt-56 -mb-58 lg:mt-0 lg:mb-0 lg:bg-slate-400/20 px-6 py-3 flex items-center flex-col scale-60 transform-gpu lg:scale-none lg:transform-none">
+  return <div className="lg:w-full -mt-56 -mb-58 lg:mt-0 lg:mb-0 lg:bg-slate-400/20 px-6 py-3 flex items-center flex-col scale-52 transform-gpu lg:scale-none lg:transform-none">
     <button onClick={printHandler}>Print</button>
     <div ref={contentRef} className="w-[186.9mm] h-[264.33mm] rounded-md bg-slate-300 flex overflow-hidden flex-row border border-slate-300">
       <div className='bg-blue-900/80 h-full flex-2 contain flex flex-col gap-3 px-6 pt-6 text-neutral-100'>
