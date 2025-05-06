@@ -58,7 +58,7 @@ export default function Skills({ resetData, resetDefault, data, setData }) {
               <div key={"skill-" + index} className="flex flex-row place-content-between bg-slate-600 hover:bg-slate-500 rounded-lg py-2 px-3 text-md font-semibold">
                 <div>{skill}</div>
                 <div>
-                <button className="rounded-md p-1 text-sm font-bold text-gray-300 hover:bg-red-500 bg-red-600/70 hover:text-white flex justify-between gap-2 items-center font-bold text-lg"
+                <button className="rounded-md p-1 text-sm font-bold text-slate-300 hover:bg-slate-700 bg-slate-800 flex justify-between gap-2 items-center font-bold text-lg"
                 onClick={() => setData(
                   (prev) => ({
                     ...prev,

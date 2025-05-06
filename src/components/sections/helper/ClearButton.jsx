@@ -11,7 +11,7 @@ export default function ClearButton({ resetData, resetDefault }) {
   return (
     <>
       <ModalConfirm isVisibleModal={isVisibleClearModal} closeModal={closeClearModal} subject="Clear all?" content='This action will clear all of your data and cant be undone.' action={resetData}/>
-      <ModalConfirm isVisibleModal={isVisibleResetModal} closeModal={closeResetModal} subject="Set to default?" content='This action will clear all of your data and cant be undone.' action={resetDefault}/>
+      <ModalConfirm isVisibleModal={isVisibleResetModal} closeModal={closeResetModal} subject="Set to default?" content='This action will replace all of your data with defaults and cant be undone.' action={resetDefault}/>
       <div className="flex flex-row gap-1">
         <button
           onClick={() => setIsVisibleClearModal(true)}
