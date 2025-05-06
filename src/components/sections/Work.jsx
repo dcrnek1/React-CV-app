@@ -12,6 +12,7 @@ export default function Work({ resetData, resetDefault, setData, data }) {
   const [inputWorkTask, setInputWorkTask] = useState("");
 
   const [validation, setValidation] = useState(true);
+  const [editing, setEditing] = useState({isEditing: false, index: null});
   
   const inputTaskButton = useRef(null);
   const inputCompanyRef = useRef(null);
@@ -27,32 +28,67 @@ export default function Work({ resetData, resetDefault, setData, data }) {
   function saveExperience() {
     if (inputCompanyName != "" && inputCompanyLocation != "" && inputEmploymentFrom != "" && inputEmploymentTo != "") {
       setValidation(true);
-      setData((prev) => ({...prev,
-        experience: [
-          {
+      if(!editing.isEditing) {
+        setData((prev) => ({...prev,
+          experience: [
+            {
+              employer: inputCompanyName,
+              dateFrom: inputEmploymentFrom,
+              dateTo: inputEmploymentTo,
+              location: inputCompanyLocation,
+              position: inputPosition,
+              work: inputWorkArray,
+            },
+            ...prev.experience
+          ]
+        }));
+      } else if (editing.isEditing) {
+        setData((prev) => {
+          const newData = {...prev};
+          newData.experience[editing.id] ={
             employer: inputCompanyName,
             dateFrom: inputEmploymentFrom,
             dateTo: inputEmploymentTo,
             location: inputCompanyLocation,
             position: inputPosition,
             work: inputWorkArray,
-          },
-          ...prev.experience
-        ]
-      }));
-      setInputCompanyName(""); setInputCompanyLocation(""); setInputEmploymentFrom(""); setInputEmploymentTo(""); setInputPosition(""); setInputWorkArray([]); setInputWorkTask("");
+          };
+          return newData;
+        });
+      cancelEdit();
+    }
+      
+      clearInputs();
       inputCompanyRef.current?.focus();
     } else {
       setValidation(false);
     }
   }
 
+  function clearInputs() {
+    setInputCompanyName(""); setInputCompanyLocation(""); setInputEmploymentFrom(""); setInputEmploymentTo(""); setInputPosition(""); setInputWorkArray([]); setInputWorkTask("");
+  }
+
+  function cancelEdit() {
+    setEditing({isEditing: false, index: null});
+  }
+
   function removeExperience(index) {
+    // TO-DO
     console.log("Removing experience with index " + index);
   }
 
   function editExperience(index) {
-    console.log("Editing experience with index " + index);
+    
+      setInputCompanyName(data.experience[index].employer);
+      setInputCompanyLocation(data.experience[index].location);
+      setInputEmploymentFrom(data.experience[index].dateFrom);
+      setInputEmploymentTo(data.experience[index].dateTo);
+      setInputPosition(data.experience[index].position);
+      setInputWorkArray(data.experience[index].work);
+
+      setEditing({isEditing: true, id: index});
+    
   }
 
   return (
@@ -120,7 +156,7 @@ export default function Work({ resetData, resetDefault, setData, data }) {
                 <div key={"language-" + index} className="flex flex-row place-content-between bg-slate-600 hover:bg-slate-500 rounded-lg py-2 px-3 text-md font-semibold">
                   <div>{task}</div>
                   <div>
-                    <button className="rounded-md p-1 text-sm font-bold text-gray-300 hover:bg-red-500 bg-red-600/70 hover:text-white flex justify-between gap-2 items-center font-bold text-lg"
+                    <button className="rounded-md p-1 text-sm font-bold text-gray-300 hover:bg-slate-700 bg-slate-800 hover:text-white flex justify-between gap-2 items-center font-bold text-lg"
                       onClick={() => setInputWorkArray(
                         (prev) => (prev.filter((task, i) => i !== index)))}>
                       <X size={15} strokeWidth={3} />
@@ -131,18 +167,22 @@ export default function Work({ resetData, resetDefault, setData, data }) {
             })}
           </div>
           
-          <div className="flex-1 mt-3">
-              <button onClick={() => saveExperience()} className="w-full rounded-md p-2.5 text-sm font-bold text-gray-300 hover:bg-sky-500 bg-sky-600/70 hover:text-white flex justify-center gap-2 items-center font-bold text-lg">
+          <div className="flex flex-row gap-3 mt-3">
+              <button onClick={() => saveExperience()} className="flex-4 rounded-md p-2.5 text-sm font-bold text-gray-300 hover:bg-sky-500 bg-sky-600/70 hover:text-white flex justify-center gap-2 items-center font-bold text-lg">
               <Save />
-              <div>Save</div>
+              <div>Save {editing.isEditing ? "edit" : ""}</div>
               </button>
-            </div>
+              {editing.isEditing && <button onClick={() => {cancelEdit(); clearInputs();}} className="flex-2 rounded-md p-2.5 text-sm font-bold text-gray-300 hover:bg-red-400 bg-red-400/70 hover:text-white flex justify-center gap-2 items-center font-bold text-lg">
+              <X size={30}/>
+              <div className="text-md">Cancel {editing.isEditing ? "edit" : ""}</div>
+              </button>}
+          </div>
         </div>
         <div className="flex flex-col gap-3">
           {data.experience.length > 0 && 
           data.experience.map((work, index) => {
             return (
-              <div key={"workExperience-" + index} className="flex flex-row gap-2 bg-slate-600 p-2 rounded-md text-slate-200 items-center justify-between">
+              <div key={"workExperience-" + index} className={`${editing.isEditing && editing.id === index ? "outline-4 outline-sky-700" : ""} flex flex-row gap-2 bg-slate-600 p-2 rounded-md text-slate-200 items-center justify-between`}>
                 <div className="flex flex-col">
                   <div className="font-semibold text-lg">{work.employer}</div>
                   <div className="text-xs italic text-slate-400">{work.dateFrom + " - " + work.dateTo} - {work.location}</div>
