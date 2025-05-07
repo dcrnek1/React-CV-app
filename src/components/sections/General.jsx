@@ -1,6 +1,17 @@
 import ClearButton from "./helper/ClearButton";
 
 export default function General({ resetData, resetDefault, data, setData }) {
+  function handleImageChange(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setData((prev) => ({...prev, picture: reader.result}))
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
   return (
     <>
       <div className="flex flex-col gap-6">
@@ -18,6 +29,9 @@ export default function General({ resetData, resetDefault, data, setData }) {
         </div>
         {/* Form */}
         <div>
+          {/* //TO-do */}
+          <label htmlFor="profile_pic" className="border text-sm rounded-lg block w-full mb-6 p-2.5 bg-slate-600 hover:bg-slate-500 border-gray-600 placeholder-slate-400 text-white focus:ring-blue-500">Choose profile picture (PNG, JPG)</label>
+          <input type="file" value={""} onChange={(e) => handleImageChange(e)} className="hidden" id="profile_pic" name="avatar" accept="image/png, image/jpeg" />
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
               <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-slate-300">First name</label>

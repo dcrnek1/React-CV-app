@@ -74,8 +74,9 @@ export default function Work({ resetData, resetDefault, setData, data }) {
   }
 
   function removeExperience(index) {
-    // TO-DO
-    console.log("Removing experience with index " + index);
+    setData((prev) => ({
+      ...prev, experience: prev.experience.filter((experience, i) => i !== index)
+    }))
   }
 
   function editExperience(index) {

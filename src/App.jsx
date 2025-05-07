@@ -6,6 +6,7 @@ import PreviewCV from "./components/views/PreviewCS";
 
 function App() {
   const defaultData = {
+    picture: null,
     contact: {
       phone: '+385 98 564 964',
       email: 'dario@gmail.com',

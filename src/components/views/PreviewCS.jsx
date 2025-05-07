@@ -25,8 +25,8 @@ export default function PreviewCV({data}) {
     <div ref={contentRef} className="w-[186.9mm] h-[264.33mm] rounded-md bg-slate-300 flex overflow-hidden flex-row border border-slate-300">
       <div className='bg-blue-900/80 h-full flex-2 contain flex flex-col gap-3 px-6 pt-6 text-neutral-100'>
       {/* Profile pic */}
-        <div className='self-center bg-neutral-200 size-47 rounded-full p3 flex items-center justify-center mb-5'>
-          <div className='bg-neutral-300 size-45 rounded-full bg-[url(/src/assets/profile.jpg)] bg-cover bg-center'></div>
+        <div className={`self-center bg-neutral-200 size-47 rounded-full p3 flex items-center justify-center mb-5`}>
+          <div className={`bg-neutral-300 size-45 rounded-full bg-cover bg-center`} style={{backgroundImage: `url("${data.picture}")`}}></div>
         </div>
         {/* Contact */}
         <div className='w-full flex flex-col gap-1'>

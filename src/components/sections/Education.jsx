@@ -75,8 +75,9 @@ export default function Education({ resetData, resetDefault, setData, data }) {
   }
 
   function removeEducation(index) {
-    // TO-DO
-    console.log("Removing education with index " + index);
+    setData((prev) => ({
+      ...prev, education: prev.education.filter((education, i) => i !== index)
+    }))
   }
 
   function editExperience(index) {
