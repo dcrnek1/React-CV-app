@@ -1,3 +1,4 @@
+import { Upload, X } from "lucide-react";
 import ClearButton from "./helper/ClearButton";
 
 export default function General({ resetData, resetDefault, data, setData }) {
@@ -9,6 +10,7 @@ export default function General({ resetData, resetDefault, data, setData }) {
         setData((prev) => ({...prev, picture: reader.result}))
       }
       reader.readAsDataURL(file)
+      setData((prev) => ({...prev, pictureName: event.target.files[0].name}))
     }
   }
 
@@ -30,7 +32,28 @@ export default function General({ resetData, resetDefault, data, setData }) {
         {/* Form */}
         <div>
           {/* //TO-do */}
-          <label htmlFor="profile_pic" className="border text-sm rounded-lg block w-full mb-6 p-2.5 bg-slate-600 hover:bg-slate-500 border-gray-600 placeholder-slate-400 text-white focus:ring-blue-500">Choose profile picture (PNG, JPG)</label>
+          <label htmlFor="profile_pic" className={`${data.picture ? "hidden" : ""} pl-3 border text-sm rounded-lg block w-full mb-6 p-2.5 bg-slate-600 h-12 hover:bg-slate-500 border-gray-600 placeholder-slate-400 text-white focus:ring-blue-500 flex flex-row gap-4 items-center`}>
+            <Upload size={18}/>
+            <div>{!data.picture && "Choose profile picture (PNG, JPG)"}</div>
+          </label>
+            {data.picture && 
+              <div className={`${data.picture ? "" : "hidden"} flex flex-row pl-3 justify-between border text-sm rounded-lg block w-full mb-6 p-2.5 h-12 bg-slate-600 hover:bg-slate-500 border-gray-600 placeholder-slate-400 text-white focus:ring-blue-500`}>
+                <div className="flex flex-row gap-4 items-center">
+                  <div className={`self-center bg-neutral-200 size-8 rounded-full flex items-center justify-center`}>
+                    <div className={`bg-neutral-300 size-8 rounded-full bg-cover bg-center`} style={{backgroundImage: `url("${data.picture}")`}}></div>
+                  </div>
+                  <div>
+                    {data.pictureName}
+                  </div>
+                </div>
+                <div className="z-41">
+                  <button className="rounded-md p-1 z40 text-sm font-bold text-slate-300 hover:bg-slate-700 bg-slate-800 flex justify-between gap-2 items-center font-bold text-lg"
+                  onClick={(e) => {e.stopPropagation(); setData((prev) =>{console.log("test"); return ({...prev, picture: null, pictureName: null})})}}>
+                    <X size={15} strokeWidth={3} />
+                  </button>
+                </div>
+              </div>
+            }
           <input type="file" value={""} onChange={(e) => handleImageChange(e)} className="hidden" id="profile_pic" name="avatar" accept="image/png, image/jpeg" />
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
