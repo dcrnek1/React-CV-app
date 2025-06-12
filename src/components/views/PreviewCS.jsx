@@ -30,27 +30,27 @@ export default function PreviewCV({data}) {
         </div>
         {/* Contact */}
         <div className='w-full flex flex-col gap-1'>
-        {Object.values(data.contact).some(val => val != '') && <div className={leftHeadingStyle + " mt-6"}>Contact</div>}
+        {Object.values(data.contact).some(val => val != '') && <div className={leftHeadingStyle + " mt-6"}>Kontakt</div>}
           {data.contact.phone && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><PhoneIncoming size={15}/><div>{data.contact.phone}</div></div>}
           {data.contact.email && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Mail size={15}/><div>{data.contact.email}</div></div>}
           {data.contact.address && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><MapPin size={15}/><div>{data.contact.address}</div></div>}
           {data.contact.website && <div className={leftItemNormal + " flex flex-row items-center gap-2"}><Globe size={15}/><div><a href='https://google.com' target='_blank'>{data.contact.website}</a></div></div>}
           {/* Skills */}
-          {data.skills.length > 0 && <div className={leftHeadingStyle + " mt-6"}>Skills</div>}
+          {data.skills.length > 0 && <div className={leftHeadingStyle + " mt-6"}>Vještine</div>}
           {data.skills.length > 0 && data.skills.map((skill, index) => <div key={"skill-" + index} className={leftItemNormal}><li>{skill}</li></div>)}
           {/* Languages */}
-          {data.languages.length > 0 && <div className={leftHeadingStyle + " mt-6"}>Languages</div>}
+          {data.languages.length > 0 && <div className={leftHeadingStyle + " mt-6"}>Strani jezici</div>}
           {data.languages.length > 0 && data.languages.map((language, index) => <div key={"language-" + index} className={leftItemNormal}><li>{language}</li></div>)}
         </div>
       </div>
       <div className='bg-slate-100 h-full flex-[3.5] px-6 py-3 flex flex-col'>
         {(data.nameSummary.firstName || data.nameSummary.lastName) && <div className='font-semibold uppercase text-blue-900/80 tracking-widest text-3xl text-left pb-2 pt-6'>{data.nameSummary.firstName && data.nameSummary.firstName} {data.nameSummary.lastName && data.nameSummary.lastName}</div>}
         {/* Summary */}
-        {data.nameSummary.summary && <><div className={rightHeadingStyle}>Summary</div>
+        {data.nameSummary.summary && <><div className={rightHeadingStyle}>O meni</div>
         <div className={rightNormalStyle}>{data.nameSummary.summary}</div>
         </>}
         {/* Experience */}
-        {data.experience.length >0 && <div className={rightHeadingStyle}>Experience</div>}
+        {data.experience.length >0 && <div className={rightHeadingStyle}>Radno iskustvo</div>}
         <div className='flex flex-col'>
           {/* First experience */}
           {data.experience.length > 0 && data.experience.map((experience, index) => {
@@ -82,7 +82,7 @@ export default function PreviewCV({data}) {
           
         </div>
         {/* Education */}
-        {data.education.length > 0 && <div className={rightHeadingStyle}>Education</div>}
+        {data.education.length > 0 && <div className={rightHeadingStyle}>Obrazovanje</div>}
         {/* First education */}
         {data.education.length > 0 && data.education.map((education, index) => {
           return (
